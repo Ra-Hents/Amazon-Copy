@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';import Image from "next/image"
 import { StarIcon } from '@heroicons/react/24/solid'
-import CurrencyInput from 'react-currency-input-field';
 import currency from "currency.js";
+import useDispatch from 'react-redux';
 
 
 const MAX_RATING=5;
@@ -10,18 +10,18 @@ const MIN_RATING=1;
 function Product({id,title,price,description,category,image}) {
 
  const [rating, setRating] = useState(null);
-  const [hasPrime, setHasPrime] = useState(false);
+ const [hasPrime, setHasPrime] = useState(false);
 
-  // Génère les valeurs seulement côté client
   useEffect(() => {
     setRating(Math.floor(Math.random() * (MAX_RATING - MIN_RATING + 1)) + MIN_RATING);
     setHasPrime(Math.random() < 0.5);
   }, []);
 
-  // Tant que le rating n’est pas défini, on ne rend rien (évite mismatch)
   if (rating === null) return null;
 
+const addItemToBasket = () => {
 
+}
   return (
     <div className='relative flex flex-col m-5 bg-white z-30  p-10'>
       <p className='absolute top-2 right-2 text-xs italic text-gray-400'>{category}</p>
@@ -50,7 +50,7 @@ function Product({id,title,price,description,category,image}) {
         </div>
       ) }
 
-      <button className='mt-auto button '>
+      <button onClick={addItemToBasket} className='mt-auto button '>
         Add to Cart
       </button>
     </div>

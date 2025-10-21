@@ -1,5 +1,6 @@
 import React from 'react'
 import Product from './Product'
+import Image from 'next/image'
 
 function ProductFeed({products}) {
   return (
@@ -16,8 +17,14 @@ function ProductFeed({products}) {
 
           />
         ))}
-        <img className='col-span-full' src="https://links.papareact.com/dyz" alt="" />
-      
+          <Image
+            className="col-span-full"
+            src="https://links.papareact.com/dyz"
+            alt="No Ads"
+            width={1500}
+            height={250}
+            objectFit="contain"
+          />      
         <div className='md:col-span-2'>
           {products.slice(4,5).map(({id,title,price,description,category,image})=>(
           <Product
